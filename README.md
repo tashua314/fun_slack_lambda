@@ -11,3 +11,6 @@ funのslackに流す。
     - python
 - AWS DynamoDB
   - 過去のスクレイピング情報の保管
+
+## 関連情報一覧
+- [公立はこだて未来大学公式HP](https://www.fun.ac.jp/)
