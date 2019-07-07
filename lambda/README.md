@@ -26,6 +26,10 @@ lambdaに接続するテストファイル
 ### requirements.txt
 pipのインストールするパッケージファイル
 
-#### 使い方
 
-詳細は[こちら](https://pynamodb.readthedocs.io/en/latest/)
+## 参考
+
+[公式ドキュメント](https://pynamodb.readthedocs.io/en/latest/)
+[PynamoDB参考記事](https://qiita.com/ykarakita/items/2bb4c951cbcb8771c3af#%E3%82%A2%E3%82%A4%E3%83%86%E3%83%A0%E4%BD%9C%E6%88%90)
+[ここにハマったDynamoDB](https://blog.brains-tech.co.jp/entry/2015/09/30/222148)
+[pylint](http://pylint.pycqa.org/en/latest/)
