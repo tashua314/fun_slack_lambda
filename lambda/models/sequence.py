@@ -26,7 +26,7 @@ class Sequence(Model):
         aws_secret_access_key = environ.get("AWS_SECRETE_KEY")
 
     # スクレイピング対象のURL
-    table_name = UnicodeAttribute(hash_key=True, null=False)
+    target_name = UnicodeAttribute(hash_key=True, null=False)
     current_id = NumberAttribute(null=False)
 
     @classmethod

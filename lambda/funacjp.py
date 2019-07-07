@@ -3,51 +3,88 @@ from urllib import request
 
 from bs4 import BeautifulSoup
 
+from models.scrap import Scrap
 from scrap_app import ScrapApp
 
+URL = "https://www.fun.ac.jp"
 
-def scrapingAndSearchNew():
-    res = []
+
+def execute():
+    """
+    スクレイピングをして、
+    新しい記事をスラックに投稿する
+    """
+    print('start funacjp#execute.')
+    latest = Scrap.get_latest(URL)
     articles = __scraping()
+    # 最新データからチェックしていく
+    articles.reverse()
+    regist_list = []
     for article in articles:
-        if True:  # 未登録データか？
-            create(article)
-            res << article
+        # 登録済みデータに来るまで登録対象とする
+        if latest is not None and article['title'] == latest.text:
+            break
+        regist_list.append(article)
+
+    # 古いデータから入れていく
+    regist_list.reverse()
+    for data in regist_list:
+        __insert(data)
+        __tweet(data)
+    print('finish funacjp#execute.')
 
 
 def __scraping():
-    url = "https://www.fun.ac.jp/"
+    """
+    スクレイピングをする
 
-    html = request.urlopen(url)
+    :return [
+        {
+            text: 記事タイトル
+            date: 投稿日付
+            href: リダイレクト先URL
+        }, ...
+    ]
+    """
+    html = request.urlopen(URL)
     soup = BeautifulSoup(html, "html.parser")
     headlines = soup.find("ul", attrs={"class", "uodateListUl"}).find_all("li")
-    # import pdb; pdb.set_trace()
 
-    # print headlines
+    res = []
     for headline in headlines:
-        print(
-                headline.find("span", attrs={"class", "date"}).string,
-                headline.find("a", attrs={"class", "title"}).string,
-                headline.find("a", attrs={"class", "title"})["href"],
-        )
+        res.append({
+            'date': headline.find("span", attrs={"class", "date"}).string,
+            'title': headline.find("a", attrs={"class", "title"}).string,
+            'href': headline.find("a", attrs={"class", "title"})["href"]
+            })
+    return res
 
 
-def create(article):
+def __insert(data):
     # 登録処理
-    print('comming soon...')
+    print("title:{}\nhref:{}\ndate:{}".format(
+        data['title'],
+        data['href'],
+        data['date']
+        ))
+    record = Scrap(
+        URL,
+        text=data['title'],
+        redirect_url=data['href'],
+        released_at=data['date']
+    )
+    record.save()
+    print("insert done.")
+    return record
 
 
-def formatToSlack(data):
-    # todo
-    print('comming soon...')
-
-
-def tweet(msg):
+def __tweet(data):
+    """ 投稿する """
     print('comming soon...')
 
 
 if __name__ == "__main__":
-    articles = scrapingAndSearchNew()
+    execute()
 
 
 # TODO: lambdaで動く形に整形
