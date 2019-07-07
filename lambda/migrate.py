@@ -6,7 +6,7 @@ from models.scrap import Scrap
 from models.sequence import Sequence
 
 
-class ScrapApp():
+class Migrate():
     """ スクレイピング実行クラス """
 
     tables = [Scrap, Sequence]
@@ -75,19 +75,20 @@ if __name__ == '__main__':
     ARGS = sys.argv
 
     if len(ARGS) == 1 or ARGS[1] == 'create_tables':
-        ScrapApp.create_tables()
+        Migrate.create_tables()
     elif ARGS[1] == 'delete_tables':
-        ScrapApp.delete_tables()
+        Migrate.delete_tables()
     elif ARGS[1] == 'insert':
-        ScrapApp.insert(
+        Migrate.insert(
             'scrap_url1',
             'text1',
             'redirect_url1',
             datetime.now()
         )
     elif ARGS[1] == 'dumps':
-        ScrapApp.dumps()
+        Migrate.dumps(Scrap)
+        Migrate.dumps(Sequence)
     elif ARGS[1] == 'describe_tables':
-        ScrapApp.describe_tables()
+        Migrate.describe_tables()
     else:
         print('unknown command.')
