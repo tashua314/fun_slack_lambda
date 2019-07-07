@@ -26,18 +26,19 @@ class Scrap(Base):
     # 公開日時
     released_at = UnicodeAttribute(null=False)
 
-    def __init__(
-            self, hash_key=None, range_key=None,
-            _user_instantiated=True, **attributes
+    def save(
+            self,
+            condition=None,
+            conditional_operator=None,
+            **expected_values
     ):
         # idをインクリメント
-        unit_id = Sequence.next_sequence('Scrap_'+hash_key)
+        self.unit_id = Sequence.next_sequence('Scrap_'+self.scrap_url)
 
-        super().__init__(
-            hash_key=hash_key,
-            range_key=unit_id,
-            _user_instantiated=_user_instantiated,
-            **attributes
+        super().save(
+            condition=condition,
+            conditional_operator=conditional_operator,
+            **expected_values
         )
 
     @classmethod

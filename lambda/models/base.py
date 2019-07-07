@@ -35,21 +35,21 @@ class Base(Model):
         default=datetime.now()
     )
 
-    def __init__(
-            self, hash_key=None, range_key=None,
-            _user_instantiated=True, **attributes
+    def save(
+            self,
+            condition=None,
+            conditional_operator=None,
+            **expected_values
     ):
         class_name = self.__class__.__name__
         if class_name == 'Sequence':
             return
 
         # idをインクリメント
-        __id = Sequence.next_sequence(class_name)
-        attributes.update({'id': __id})
+        self.id = Sequence.next_sequence(class_name)
 
-        super().__init__(
-            hash_key=hash_key,
-            range_key=range_key,
-            _user_instantiated=_user_instantiated,
-            **attributes
+        super().save(
+            condition=condition,
+            conditional_operator=conditional_operator,
+            **expected_values
         )
