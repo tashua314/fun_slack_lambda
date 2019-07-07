@@ -1,30 +1,29 @@
-#coding: UTF-8
+# coding: UTF-8
 from urllib import request
+
 from bs4 import BeautifulSoup
+
+from scrap_app import ScrapApp
+
 
 def scrapingAndSearchNew():
     res = []
-    articles = scraping()
+    articles = __scraping()
     for article in articles:
-        if True: #未登録データか？
+        if True:  # 未登録データか？
             create(article)
             res << article
 
-def scraping():
-    #url
+
+def __scraping():
     url = "https://www.fun.ac.jp/"
 
-    #get html
     html = request.urlopen(url)
-
-    #set BueatifulSoup
     soup = BeautifulSoup(html, "html.parser")
-
-    #get headlines
     headlines = soup.find("ul", attrs={"class", "uodateListUl"}).find_all("li")
     # import pdb; pdb.set_trace()
 
-    #print headlines
+    # print headlines
     for headline in headlines:
         print(
                 headline.find("span", attrs={"class", "date"}).string,
@@ -32,12 +31,20 @@ def scraping():
                 headline.find("a", attrs={"class", "title"})["href"],
         )
 
+
 def create(article):
     # 登録処理
+    print('comming soon...')
+
 
 def formatToSlack(data):
+    # todo
+    print('comming soon...')
+
 
 def tweet(msg):
+    print('comming soon...')
+
 
 if __name__ == "__main__":
     articles = scrapingAndSearchNew()
