@@ -4,7 +4,7 @@
 slackに流す。
 
 ## 利用ツール
-- AWS Batch
+- AWS CloudWatch
   - 定期的にlambdaのスクリプトをを呼び出す
 - AWS Lambda
   - Batchで呼び出される処理部
@@ -14,7 +14,7 @@ slackに流す。
   - 過去のスクレイピング情報の保管
 
 ## 処理フロー
-1. AWS Batch
+1. AWS CloudWatch
   1. Lambdaの処理を呼び出す
 1. AWS Lambda
   1. 過去のスクレイピングデータをDynamoDBから取得
@@ -33,8 +33,6 @@ slackに流す。
   - models/
     - DynamoDBのモデル一覧
     - 詳細は[/lambda/README.md](./lambda/README.md)
-- batch/
-  - Batch関連
 
 ## 関連情報一覧
 - [公立はこだて未来大学公式HP](https://www.fun.ac.jp/)

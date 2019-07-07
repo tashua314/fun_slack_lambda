@@ -1,15 +1,15 @@
 # coding: UTF-8
+
 from urllib import request
 
 from bs4 import BeautifulSoup
 
 from models.scrap import Scrap
-from scrap_app import ScrapApp
 
 URL = "https://www.fun.ac.jp"
 
 
-def execute():
+def lambda_handler(_event, _context):
     """
     スクレイピングをして、
     新しい記事をスラックに投稿する
@@ -32,6 +32,7 @@ def execute():
         __insert(data)
         __tweet(data)
     print('finish funacjp#execute.')
+    return regist_list
 
 
 def __scraping():
@@ -78,17 +79,15 @@ def __insert(data):
     return record
 
 
-def __tweet(data):
+def __tweet(_data):
     """ 投稿する """
     print('comming soon...')
 
 
 if __name__ == "__main__":
-    execute()
+    lambda_handler(None, None)
 
 
 # TODO: lambdaで動く形に整形
-# TODO: DynamoDBのデータを取得
-# TODO: DynamoDBデータと比較して、差分があれば登録
 # TODO: slackに渡すフォーマットに整形
 # TODO: slackに渡す

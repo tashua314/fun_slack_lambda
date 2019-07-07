@@ -3,6 +3,7 @@
 from datetime import datetime
 from os import environ
 from os.path import dirname, join
+import botocore.session
 
 from dotenv import load_dotenv
 
@@ -12,8 +13,7 @@ from pynamodb.models import Model
 
 from .sequence import Sequence
 
-DOTENV_PATH = join(dirname(__file__), '.env')
-load_dotenv(DOTENV_PATH)
+SESSION = botocore.session.get_session()
 
 
 class Base(Model):
@@ -25,9 +25,9 @@ class Base(Model):
         # 各モデルで設定
         table_name = ''
 
-        region = 'ap-northeast-1'
-        aws_access_key_id = environ.get("AWS_ACCESS_KEY")
-        aws_secret_access_key = environ.get("AWS_SECRETE_KEY")
+        region = SESSION.get_config_variable('region')
+        aws_access_key_id = SESSION.get_credentials().access_key
+        aws_secret_access_key = SESSION.get_credentials().secret_key
 
     id = NumberAttribute(null=False)
     # レコード作成日時

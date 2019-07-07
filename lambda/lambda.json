@@ -1,0 +1,16 @@
+{
+  "name": "scrapAndTweetToSlack",
+  "description": "スクレイピング結果をスラックに通知",
+  "region": "ap-northeast-1",
+  "runtime": "python3.7",
+  "handler": "funacjp.lambda_handler",
+  "role": "arn:aws:iam::953573378652:role/lambda-role",
+  "ignore": [
+    "__pycache__/",
+    "lambda_function.zip",
+    ".lambda_uploader_tmp/",
+    ".pylintrc"
+  ],
+  "timeout": 300,
+  "memory": 128
+}
