@@ -1,4 +1,3 @@
-""" スクレイピング実行ファイル """
 import sys
 from datetime import datetime
 
@@ -7,7 +6,7 @@ from models.sequence import Sequence
 
 
 class Migrate():
-    """ スクレイピング実行クラス """
+    """ テーブルへのMigrate処理クラス """
 
     tables = [Scrap, Sequence]
 

@@ -9,13 +9,23 @@ lambda_uploadarに必要なファイル。
 - role
   - Lambda関数のExecution Roleを設定
   - roleの作成は[こちら](https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/lambda-intro-execution-role.html)参照
+- refs
+  - [AWS Lambda Pythonをlambda-uploaderでデプロイ](https://dev.classmethod.jp/cloud/deploy-aws-lambda-python-with-lambda-uploader/)
+  - [github](https://github.com/rackerlabs/lambda-uploader)
+  - [lambda-uploaderを使ってAWS Lambdaをリモートで開発、実行、デプロイする](https://qiita.com/Esfahan/items/08fa6af8811dada4cb2a)
 
+### funacjp.py
+Lambdaで呼び出すメイン処理ファイル。
+
+### migrate.py
+DynamoDBへの初期化処理やてテーブル削除など、migrate処理関連ファイル
+
+### index.py
+lambdaに接続するテストファイル
+
+### requirements.txt
+pipのインストールするパッケージファイル
 
 #### 使い方
 
 詳細は[こちら](https://pynamodb.readthedocs.io/en/latest/)
-
-## 注意
-- `env/` は、プロジェクトルートに置く。
-  - `lambda/`ディレクトリ配下に置くと、`lambda_uploader` 実行時に一緒にパッケージングしようとして、アップロードファイルサイズが大きくなってしまう
-- lambda_uploaderはlambdaディレクトリにて実行する
