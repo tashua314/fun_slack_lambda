@@ -40,13 +40,13 @@ slackに流す。
 1. `source env/bin/active`
 1. `pip install -r lambda/requirements.txt` で必要パッケージインストール
 1. awscliコマンドをインストールしてAWSにアクセスできる状態にする
-  - `aws configure`
+    - `aws configure`
 1. AWS Lambdaで関数を作成する
 1. IAMで、LambdaとDynamoDBへのアクセスが可能なroleを作成する
 1. `lambda.json` を調整する
-  - role: IAMにて作成したroleのarnを設定
-  - region: Lambdaにて作成した関数のregionを設定
-  - その他変更箇所があれば
+    - role: IAMにて作成したroleのarnを設定
+    - region: Lambdaにて作成した関数のregionを設定
+    - その他変更箇所があれば
 1. CloudWatchにスケジュールを設定してLambdaの作成した関数と紐付ける
 1. 環境変数にSlackのapikeyなどを設定する
 
