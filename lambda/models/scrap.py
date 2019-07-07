@@ -32,6 +32,11 @@ class Scrap(Base):
             conditional_operator=None,
             **expected_values
     ):
+        """
+        保存処理
+        unit_idをインクリメント設定させるので、
+        オーバーライド
+        """
         # idをインクリメント
         self.unit_id = Sequence.next_sequence('Scrap_'+self.scrap_url)
 
@@ -64,4 +69,5 @@ class Scrap(Base):
 
     @classmethod
     def __target_sequence_name(cls, scrap_url):
+        """ unit_idのシーケンス管理用の名前 """
         return "{}_{}".format(__class__.__name__, scrap_url)

@@ -41,6 +41,11 @@ class Base(Model):
             conditional_operator=None,
             **expected_values
     ):
+        """
+        保存処理
+        idをインクリメント設定させるので、
+        オーバーライド
+        """
         class_name = self.__class__.__name__
         if class_name == 'Sequence':
             return
