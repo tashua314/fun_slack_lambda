@@ -66,3 +66,6 @@ slackに流す。
 - virtualenvの設定ディレクトリ `env/` は、プロジェクトルートに置く。
   - `lambda/`ディレクトリ配下に置くと、`lambda_uploader` 実行時に一緒にパッケージングしようとして、アップロードファイルサイズが大きくなってしまう
 - lambda_uploaderはlambdaディレクトリにて実行する
+
+## 参照
+- [SlackAPIのメッセージフォーマット](https://api.slack.com/docs/message-formatting)
