@@ -141,6 +141,12 @@ def __tweet(data):
 
 
 if __name__ == "__main__":
+    """
+    実行例)
+    'python funacjp init 2018': 2018年度分のみ登録
+    'python funacjp init_set_upper 2018': 2018年度分まで登録
+    'python funacjp': 最新の未登録分を所定の数(MAX_COUT)だけ登録
+    """
     ARGS = sys.argv
     if len(ARGS) > 1 and ARGS[1] == 'init':
         if len(ARGS) > 2:
