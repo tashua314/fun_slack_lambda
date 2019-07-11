@@ -38,7 +38,6 @@ def init(target_year, method=None):
             # 対象年度分のみ登録
             __insert(data)
 
-    print('{}件登録しました。'.format(len(articles)))
     print('<<<<< finish funacjp#init.')
 
 
@@ -132,7 +131,7 @@ def __insert(data):
 
 def __tweet(data):
     """ 投稿する """
-    msg = "<:fun: {}|[{}] {}>".format(
+    msg = ":fun: <{}|[{}] {}>".format(
         data['href'], data['date'], data['title']
     )
     response = SlackCustom().post(msg, '<!here>')
