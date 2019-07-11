@@ -134,7 +134,7 @@ def __tweet(data):
     msg = ":fun: <{}|[{}] {}>".format(
         data['href'], data['date'], data['title']
     )
-    response = SlackCustom().post(msg, '<!here>')
+    response = SlackCustom().post(msg, '<!channel>')
     print(response)
     print('----- SlackCustom#post done.')
 
